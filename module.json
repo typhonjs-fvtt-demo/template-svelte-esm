@@ -1,7 +1,7 @@
 {
   "name": "template-svelte-esm",
   "title": "Template Svelte (ESM)",
-  "description": "Provides a bare bones ES Modules template repo to get set up with using the the TyphonJS Runtime Library and Svelte.",
+  "description": "Provides a bare-bones Foundry module template repo to get set up with using the TyphonJS Runtime Library and Svelte with ES Modules.",
   "author": "Michael Leahy (TyphonJS) - MLeahy#4299",
   "authors": [
     {
