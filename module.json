@@ -1,5 +1,5 @@
 {
-  "name": "template-svelte",
+  "name": "template-svelte-esm",
   "title": "Template Svelte (ESM)",
   "description": "Provides a bare bones ES Modules template repo to get set up with using the the TyphonJS Runtime Library and Svelte.",
   "author": "Michael Leahy (TyphonJS) - MLeahy#4299",
@@ -21,6 +21,13 @@
   ],
   "styles": [
     "./dist/template-svelte-esm.css"
+  ],
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json"
+    }
   ],
   "system": [],
   "dependencies": [],
