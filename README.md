@@ -19,18 +19,25 @@ concepts available with Svelte and TRL. Please stop by the
 Discord server to ask any questions.
 
 ## Installation:
-1. Create your version of the template in a new repo by clicking on the "template" button above.
+1. Create your version of the template in a new repo by clicking on the "template" button above. In this process rename
+the repo to your new module name.
 2. Use WebStorm or VSCode to clone your repo into the Foundry VTT data / modules directory (make sure to keep the name
-   `template-svelte-esm` as the folder installed in your module directory).
-3. Open in your IDE and proceed to run `npm install`
-4. Run the NPM script `build` or for constant development `build-watch` (this builds and bundles the module to
+of your repo as the folder installed in your module directory).
+3. Modify the module `name` in `module.json` & `package.json` to match your new repo name likewise consider renaming the 
+source and styles referenced in `module.json` to the name of your new module.
+4. You may of course also change the title of the module in `module.json` to your new module name.
+5. Rename in `./rollup.config.mjs` the name of the bundle / distribution and output CSS file to match the names you set 
+in step #3 above.
+6. Open in your IDE and proceed to run `npm install`
+7. Run the NPM script `build` or for constant development `build-watch` (this builds and bundles the module to
    `./dist`.)
-5. Restart Foundry VTT. This is necessary for Foundry to load the new module.
-6. You should now have a new module installed `Template Svelte (ESM)` visible in your modules list.
-7. Launch a game / world of your choice.
-8. Enable `Template Svelte (ESM)` under `Manage Modules`.
-9. On reload the basic application will appear instantly as it is rendered in the `ready` Foundry hook from the entry point:
-[./src/init.js](https://github.com/typhonjs-fvtt-demo/template-svelte-esm/blob/main/src/init.js)
+8. Restart Foundry VTT. This is necessary for Foundry to load the new module.
+9. You should now have a new module installed `Essential Svelte (ESM)` or whatever title you set in step #4 visible in 
+your modules list.
+10. Launch a game / world of your choice.
+11. Enable your new module under `Manage Modules`.
+12. On reload the basic application will appear instantly as it is rendered in the `ready` Foundry hook from the entry 
+point: [./src/init.js](https://github.com/typhonjs-fvtt-demo/template-svelte-esm/blob/main/src/init.js)
 
 ## What Is Happening Here?
 Not a lot as this is a bare-bones setup allowing you to further modify this module to your own liking. It provides
