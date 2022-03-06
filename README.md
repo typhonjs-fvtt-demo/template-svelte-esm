@@ -1,2 +1,2 @@
-# template-svelte
-Provides a basic Foundry module w/ TRL and ES modules.
+# template-svelte-esm
+Provides a bare-bones Foundry module template repo to get set up with using the the TyphonJS Runtime Library and Svelte with ES Modules.
