@@ -9,9 +9,8 @@
     "Michael Leahy <support@typhonjs.io> (https://github.com/typhonrt)"
   ],
   "dependencies": {
-    "@typhonjs-fvtt/runtime": "^0.0.8",
-    "svelte": "^3.46.0",
-    "svelte-preprocess": "^4.10.0"
+    "@typhonjs-fvtt/runtime": "^0.0.9",
+    "svelte": "^3.46.0"
   },
   "devDependencies": {
     "@babel/core": "^7",
@@ -20,7 +19,8 @@
     "@typhonjs-config/eslint-config": "^0.3.0",
     "@typhonjs-fvtt/eslint-config-foundry.js": "^0.8.0",
     "eslint": "^8",
-    "rollup": "^2"
+    "rollup": "^2",
+    "svelte-preprocess": "^4.10.0"
   },
 
   "browserslist": [">5%", "not IE 11"],
