@@ -10,6 +10,12 @@ Provides a bare-bones Foundry module template repo to get set up with using
 [TyphonJS Runtime Library](https://github.com/typhonjs-fvtt-lib/typhonjs) and [Svelte](https://svelte.dev/) on
 [Foundry VTT](https://foundryvtt.com/) with ES Modules.
 
+Triple licensed under the [CC0](https://github.com/typhonjs-fvtt-demo/template-svelte-esm/blob/main/LICENSE-CC0), 
+[MIT](https://github.com/typhonjs-fvtt-demo/template-svelte-esm/blob/main/LICENSE-MIT), or 
+[Unlicense](https://github.com/typhonjs-fvtt-demo/template-svelte-esm/blob/main/LICENSE-UNLICENSE). This repo is 
+intended as public domain / freely available starter code that you can use for any project you choose and licensed 
+however you see fit with no restrictions.
+
 ## About:
 Getting started with a new library or development methodology can be difficult. This template repo contains a 
 bare-bones setup suitable to start working on your own module. Certainly do check out 
