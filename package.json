@@ -9,8 +9,8 @@
     "Michael Leahy <support@typhonjs.io> (https://github.com/typhonrt)"
   ],
   "dependencies": {
-    "@typhonjs-fvtt/runtime": "^0.0.14",
-    "svelte": "^3.48.0"
+    "@typhonjs-fvtt/runtime": "^0.0.15",
+    "svelte": "^3.49.0"
   },
   "devDependencies": {
     "@babel/core": "^7",
