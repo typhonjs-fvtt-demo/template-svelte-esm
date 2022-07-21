@@ -17,10 +17,10 @@
   "minimumCoreVersion": "0.8.6",
   "compatibleCoreVersion": "9",
   "esmodules": [
-    "./dist/template-svelte-esm.js"
+    "index.js"
   ],
   "styles": [
-    "./dist/template-svelte-esm.css"
+    "style.css"
   ],
   "languages": [
     {
