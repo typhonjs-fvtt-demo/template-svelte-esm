@@ -1,10 +1,6 @@
-import * as path           from 'path';
-
 import { svelte }          from '@sveltejs/vite-plugin-svelte';
-// import postcss             from 'rollup-plugin-postcss';       // Process Sass / CSS w/ PostCSS
 import resolve             from '@rollup/plugin-node-resolve'; // This resolves NPM modules from node_modules.
 import preprocess          from 'svelte-preprocess';
-// import { terser }          from 'rollup-plugin-terser';        // Terser is used for minification / mangling
 import {
    postcssConfig,
    terserConfig,
@@ -18,14 +14,6 @@ const s_SOURCEMAPS = true; // Generate sourcemaps for the bundle (recommended).
 // https://github.com/typhonjs-fvtt-lib/typhonjs/releases/latest/download/module.json
 const s_TYPHONJS_MODULE_LIB = false;
 
-// Creates a standard configuration for PostCSS with autoprefixer & postcss-preset-env.
-const postcssMain = postcssConfig({
-   // extract: 'template-svelte-esm.css', // remove
-   // to: 'template-svelte-esm.css',
-   compress: s_COMPRESS,
-   sourceMap: s_SOURCEMAPS
-});
-
 const s_RESOLVE_CONFIG = {
    browser: true,
    dedupe: ['svelte', '@typhonjs-fvtt/runtime', '@typhonjs-fvtt/svelte-standard']
@@ -35,9 +23,10 @@ export default () =>
 {
    /** @type {import('vite').UserConfig} */
    return {
-      root: 'src/',
-      base: '/modules/template-svelte-esm/',
-      publicDir: path.resolve(__dirname, 'public'),
+      root: 'src/',                             // Source location / esbuild root.
+      base: '/modules/template-svelte-esm/',    // Base module path that 30001 / served dev directory.
+      publicDir: false,                         // No public resources to copy.
+      cacheDir: '../.vite-cache',               // Relative from root directory.
 
       optimizeDeps: {
          include: [
@@ -62,38 +51,32 @@ export default () =>
          ]
       },
 
-      resolve: {
-         conditions: ['browser', 'import'],
-      },
+      resolve: { conditions: ['browser', 'import'] },
 
-      esbuild: {
-         target: 'es2022,chrome100'
-      },
+      esbuild: { target: 'es2022,chrome100' },
 
       css: {
-         postcss: postcssMain
+         // Creates a standard configuration for PostCSS with autoprefixer & postcss-preset-env.
+         postcss: postcssConfig({ compress: s_COMPRESS, sourceMap: s_SOURCEMAPS })
       },
 
       server: {
          port: 30001,
-         open: false,
+         open: '/game',
          proxy: {
+            '^/modules/template-svelte-esm/module.json': 'http://localhost:30000',
             '^(?!/modules/template-svelte-esm)': 'http://localhost:30000',
-            '/socket.io': {
-               target: 'ws://localhost:30000',
-               ws: true
-            }
+            '/socket.io': { target: 'ws://localhost:30000', ws: true }
          }
       },
 
       build: {
-         outDir: path.resolve(__dirname, 'dist'),
-         emptyOutDir: true,
+         outDir: __dirname,
+         emptyOutDir: false,
          sourcemap: s_SOURCEMAPS,
          brotliSize: true,
          lib: {
-            name: 'Template Svelte ESM',
-            entry: path.resolve(__dirname, 'src/index.js'),
+            entry: './index.js',
             formats: ['es'],
             fileName: 'index'
          }
@@ -113,9 +96,7 @@ export default () =>
             },
          }),
 
-         // postcss(postcssMain),
-
-         // resolve(s_RESOLVE_CONFIG),
+         resolve(s_RESOLVE_CONFIG),    // Necessary when bundling npm-linked packages.
 
          // When s_TYPHONJS_MODULE_LIB is true transpile against the Foundry module version of TRL.
          // s_TYPHONJS_MODULE_LIB && typhonjsRuntime()
