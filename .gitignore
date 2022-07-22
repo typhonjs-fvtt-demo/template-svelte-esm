@@ -1,5 +1,6 @@
 .idea
 .DS_Store
+.vite-cache/**/*
 .vscode/**/*
 !.vscode/extensions.json
 dist/
