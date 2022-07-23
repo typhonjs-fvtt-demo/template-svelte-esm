@@ -1,10 +1,10 @@
 .idea
 .DS_Store
-.vite-cache/**/*
+.vite-cache/
 .vscode/**/*
 !.vscode/extensions.json
 dist/
 node_modules/
-index.js
-index.js.map
-style.css
+/index.js
+/index.js.map
+/style.css

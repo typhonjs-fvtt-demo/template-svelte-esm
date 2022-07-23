@@ -14,10 +14,15 @@ const s_SOURCEMAPS = true; // Generate sourcemaps for the bundle (recommended).
 // https://github.com/typhonjs-fvtt-lib/typhonjs/releases/latest/download/module.json
 const s_TYPHONJS_MODULE_LIB = false;
 
+// Used in bundling.
 const s_RESOLVE_CONFIG = {
    browser: true,
-   dedupe: ['svelte', '@typhonjs-fvtt/runtime', '@typhonjs-fvtt/svelte-standard']
-}
+   dedupe: ['svelte']
+};
+
+// ATTENTION!
+// You must change `base` and the `proxy` strings replacing `/modules/template-svelte-esm/` with your
+// module or system ID.
 
 export default () =>
 {
@@ -28,44 +33,31 @@ export default () =>
       publicDir: false,                         // No public resources to copy.
       cacheDir: '../.vite-cache',               // Relative from root directory.
 
-      optimizeDeps: {
-         include: [
-            '@typhonjs-fvtt/runtime/svelte/action',
-            '@typhonjs-fvtt/runtime/svelte/animate',
-            '@typhonjs-fvtt/runtime/svelte/application',
-            '@typhonjs-fvtt/runtime/svelte/application/dialog',
-            '@typhonjs-fvtt/runtime/svelte/application/legacy',
-            '@typhonjs-fvtt/runtime/svelte/component/core',
-            '@typhonjs-fvtt/runtime/svelte/component/dialog',
-            // '@typhonjs-fvtt/runtime/svelte/gsap',
-            // '@typhonjs-fvtt/runtime/svelte/gsap/plugin',
-            // '@typhonjs-fvtt/runtime/svelte/gsap/plugin/bonus',
-            '@typhonjs-fvtt/runtime/svelte/handler',
-            '@typhonjs-fvtt/runtime/svelte/helper',
-            '@typhonjs-fvtt/runtime/svelte/math',
-            '@typhonjs-fvtt/runtime/svelte/plugin/data',
-            '@typhonjs-fvtt/runtime/svelte/plugin/system',
-            '@typhonjs-fvtt/runtime/svelte/store',
-            '@typhonjs-fvtt/runtime/svelte/transition',
-            '@typhonjs-fvtt/runtime/svelte/util'
-         ]
+      resolve: { conditions: ['import', 'browser'] },
+
+      esbuild: {
+         target: ['es2022', 'chrome100'],
+         keepNames: true   // Note: doesn't seem to work.
       },
-
-      resolve: { conditions: ['browser', 'import'] },
-
-      esbuild: { target: 'es2022,chrome100' },
 
       css: {
          // Creates a standard configuration for PostCSS with autoprefixer & postcss-preset-env.
          postcss: postcssConfig({ compress: s_COMPRESS, sourceMap: s_SOURCEMAPS })
       },
 
+      // About server options:
+      // - Set to `open` to boolean `false` to not open a browser window automatically. This is useful if you set up a
+      // debugger instance in your IDE and launch it with the URL: 'http://localhost:30001/game'.
+      //
+      // - The top proxy entry for `lang` will pull the language resources from the main Foundry / 30000 server. This
+      // is necessary to reference the dev resources as the root is `/src` and there is no public / static resources
+      // served.
       server: {
          port: 30001,
          open: '/game',
          proxy: {
-            '^/modules/template-svelte-esm/module.json': 'http://localhost:30000',
-            '^(?!/modules/template-svelte-esm)': 'http://localhost:30000',
+            '^(/modules/template-svelte-esm/lang)': 'http://localhost:30000',
+            '^(?!/modules/template-svelte-esm/)': 'http://localhost:30000',
             '/socket.io': { target: 'ws://localhost:30000', ws: true }
          }
       },
@@ -75,6 +67,9 @@ export default () =>
          emptyOutDir: false,
          sourcemap: s_SOURCEMAPS,
          brotliSize: true,
+         minify: s_COMPRESS ? 'terser' : false,
+         target: ['es2022', 'chrome100'],
+         terserOptions: s_COMPRESS ? { ...terserConfig(), ecma: 2022 } : void 0,
          lib: {
             entry: './index.js',
             formats: ['es'],
@@ -99,7 +94,7 @@ export default () =>
          resolve(s_RESOLVE_CONFIG),    // Necessary when bundling npm-linked packages.
 
          // When s_TYPHONJS_MODULE_LIB is true transpile against the Foundry module version of TRL.
-         // s_TYPHONJS_MODULE_LIB && typhonjsRuntime()
+         s_TYPHONJS_MODULE_LIB && typhonjsRuntime()
       ]
    };
 };
