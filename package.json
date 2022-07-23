@@ -9,20 +9,20 @@
     "Michael Leahy <support@typhonjs.io> (https://github.com/typhonrt)"
   ],
   "dependencies": {
-    "@typhonjs-fvtt/runtime": "^0.0.16",
+    "@typhonjs-fvtt/runtime": "^0.0.17",
     "svelte": "^3.49.0"
   },
   "devDependencies": {
     "@typhonjs-config/eslint-config": "^0.3.0",
     "@typhonjs-fvtt/eslint-config-foundry.js": "^0.8.0",
     "eslint": "^8",
-    "rollup": "^2",
-    "svelte-preprocess": "^4.10.0"
+    "svelte-preprocess": "^4.10.0",
+    "vite": "^3"
   },
   "browserslist": [">5%", "not IE 11"],
   "scripts": {
-    "build": "rollup --config",
-    "build-watch": "rollup --watch --config",
+    "build": "vite build",
+    "dev": "vite",
     "eslint": "eslint ."
   }
 }

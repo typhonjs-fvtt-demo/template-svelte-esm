@@ -32,18 +32,18 @@ of your repo as the folder installed in your module directory).
 3. Modify the module `name` in `module.json` & `package.json` to match your new repo name likewise consider renaming the 
 source and styles referenced in `module.json` to the name of your new module.
 4. You may of course also change the title of the module in `module.json` to your new module name.
-5. Rename in `./rollup.config.mjs` the name of the bundle / distribution and output CSS file to match the names you set 
+5. Rename in `./vite.config.mjs` references to `template-svelte-esm` to your new module name / ID. 
 in step #3 above.
 6. Open in your IDE and proceed to run `npm install`
-7. Run the NPM script `build` or for constant development `build-watch` (this builds and bundles the module to
-   `./dist`.)
+7. Run the NPM script `build` to create the production bundle or `dev` to run in developer mode which uses `esbuild` & 
+HMR (hot module replacement) to dynamically update your running module in real time for all Svelte related components.   
 8. Restart Foundry VTT. This is necessary for Foundry to load the new module.
 9. You should now have a new module installed `Essential Svelte (ESM)` or whatever title you set in step #4 visible in 
 your modules list.
 10. Launch a game / world of your choice.
 11. Enable your new module under `Manage Modules`.
 12. On reload the basic application will appear instantly as it is rendered in the `ready` Foundry hook from the entry 
-point: [./src/init.js](https://github.com/typhonjs-fvtt-demo/template-svelte-esm/blob/main/src/init.js)
+point: [./src/index.js](https://github.com/typhonjs-fvtt-demo/template-svelte-esm/blob/main/src/index.js)
 
 ## What Is Happening Here?
 Not a lot as this is a bare-bones setup allowing you to further modify this module to your own liking. It provides
