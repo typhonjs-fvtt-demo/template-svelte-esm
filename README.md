@@ -45,6 +45,9 @@ your modules list.
 12. On reload the basic application will appear instantly as it is rendered in the `ready` Foundry hook from the entry 
 point: [./src/index.js](https://github.com/typhonjs-fvtt-demo/template-svelte-esm/blob/main/src/index.js)
 
+Note: The template repo [./module.json](https://github.com/typhonjs-fvtt-demo/template-svelte-esm/blob/main/module.json)
+is configured to work on v0.8 through v10 w/ the duplication of 'id' / 'name' and compatibility keys for either. 
+
 ## What Is Happening Here?
 Not a lot as this is a bare-bones setup allowing you to further modify this module to your own liking. It provides
 the basic build setup and a "dummy" SvelteApplication instance. The best thing to do is to change your repo name to the 
