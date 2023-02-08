@@ -29,30 +29,25 @@ Discord server to ask any questions.
 the repo to your new module name.
 2. Use WebStorm or VSCode to clone your repo into the Foundry VTT data / modules directory (make sure to keep the name
 of your repo as the folder installed in your module directory).
-3. Modify the module `name` in `module.json` & `package.json` to match your new repo name likewise consider renaming the 
-source and styles referenced in `module.json` to the name of your new module.
+3. Modify the module `id` in `module.json` to match your new Foundry package ID.
 4. You may of course also change the title of the module in `module.json` to your new module name.
-5. Rename in `./vite.config.mjs` references to `template-svelte-esm` to your new module name / ID. 
-in step #3 above.
-6. Open in your IDE and proceed to run `npm install`
+5. In `./vite.config.mjs` update `s_PACKAGE_ID` which references `modules/template-svelte-esm` to your new module ID. 
+in step #3 above. Also provide a short unique hash ID for `s_SVELTE_HASH_ID`; suggestion: base it off your package ID.
+6. Open in your IDE or via command line and proceed to run `npm install`
 7. Run the NPM script `build` to create the production bundle or `dev` to run in developer mode which uses `esbuild` & 
 HMR (hot module replacement) to dynamically update your running module in real time for all Svelte related components.   
 8. Restart Foundry VTT. This is necessary for Foundry to load the new module.
-9. You should now have a new module installed `Essential Svelte (ESM)` or whatever title you set in step #4 visible in 
+9. You should now have a new module installed `Template Svelte (ESM)` or whatever title you set in step #4 visible in 
 your modules list.
 10. Launch a game / world of your choice.
 11. Enable your new module under `Manage Modules`.
 12. On reload the basic application will appear instantly as it is rendered in the `ready` Foundry hook from the entry 
 point: [./src/index.js](https://github.com/typhonjs-fvtt-demo/template-svelte-esm/blob/main/src/index.js)
 
-Note: The template repo [./module.json](https://github.com/typhonjs-fvtt-demo/template-svelte-esm/blob/main/module.json)
-is configured to work on v0.8 through v10 w/ the duplication of 'id' / 'name' and compatibility keys for either. 
-
 ## What Is Happening Here?
 Not a lot as this is a bare-bones setup allowing you to further modify this module to your own liking. It provides
 the basic build setup and a "dummy" SvelteApplication instance. The best thing to do is to change your repo name to the 
-name of your new module then also adjust this name in the `name` field in `package.json` and `module.json` to match your
-new module name. 
+ID of your new module and update `id` in `module.json` to match your new module ID. 
 
 ## About the TyphonJS Runtime Library:
 The TyphonJS Runtime Library (TRL) brings an exciting new library resource for all Foundry VTT developers to build
