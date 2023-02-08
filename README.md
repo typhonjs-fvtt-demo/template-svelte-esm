@@ -24,7 +24,7 @@ concepts available with Svelte and TRL. Please stop by the
 [![TyphonJS Discord](https://img.shields.io/discord/737953117999726592?label=TyphonJS)](https://discord.gg/mnbgN8f)
 Discord server to ask any questions.
 
-## Installation:
+## Installation (Requires Foundry VTT version 10):
 1. Create your version of the template in a new repo by clicking on the "template" button above. In this process rename
 the repo to your new module name.
 2. Use WebStorm or VSCode to clone your repo into the Foundry VTT data / modules directory (make sure to keep the name
