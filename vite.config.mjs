@@ -85,7 +85,7 @@ export default () =>
          }
       },
 
-      // Necessary when using the dev server for top-level await usage inside of TRL.
+      // Necessary when using the dev server for top-level await usage inside TRL.
       optimizeDeps: {
          esbuildOptions: {
             target: 'es2022'
