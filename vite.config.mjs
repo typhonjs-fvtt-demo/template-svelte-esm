@@ -76,12 +76,19 @@ export default () =>
          sourcemap: s_SOURCEMAPS,
          brotliSize: true,
          minify: s_COMPRESS ? 'terser' : false,
-         target: ['es2022', 'chrome100'],
+         target: ['es2022'],
          terserOptions: s_COMPRESS ? { ...terserConfig(), ecma: 2022 } : void 0,
          lib: {
             entry: './index.js',
             formats: ['es'],
             fileName: 'index'
+         }
+      },
+
+      // Necessary when using the dev server for top-level await usage inside of TRL.
+      optimizeDeps: {
+         esbuildOptions: {
+            target: 'es2022'
          }
       },
 
