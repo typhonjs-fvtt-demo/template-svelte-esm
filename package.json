@@ -7,6 +7,10 @@
   "contributors": [
     "Michael Leahy <support@typhonjs.io> (https://github.com/typhonrt)"
   ],
+  "imports": {
+    "#runtime/*": "@typhonjs-fvtt/runtime/*",
+    "#standard/*": "@typhonjs-fvtt/svelte-standard/*"
+  },
   "dependencies": {
     "@typhonjs-fvtt/runtime": "^0.1.0",
     "@typhonjs-fvtt/svelte-standard": "^0.1.0",
