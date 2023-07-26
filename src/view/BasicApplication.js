@@ -1,4 +1,4 @@
-import { SvelteApplication }  from '@typhonjs-fvtt/runtime/svelte/application';
+import { SvelteApplication }  from '#runtime/svelte/application';
 
 import BasicAppShell          from './BasicAppShell.svelte';
 

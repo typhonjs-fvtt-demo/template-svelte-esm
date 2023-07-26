@@ -1,5 +1,5 @@
 <script>
-   import { ApplicationShell }   from '@typhonjs-fvtt/runtime/svelte/component/core';
+   import { ApplicationShell }   from '#runtime/svelte/component/core';
 
    export let elementRoot;
 </script>
