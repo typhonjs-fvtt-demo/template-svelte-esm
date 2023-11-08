@@ -20,6 +20,12 @@
   "styles": [
     "style.css"
   ],
+  "flags": {
+    "hotReload": {
+      "extensions": ["json"],
+      "paths": ["lang"]
+    }
+  },
   "languages": [
     {
       "lang": "en",
