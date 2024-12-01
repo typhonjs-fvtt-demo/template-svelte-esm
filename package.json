@@ -12,15 +12,14 @@
     "#standard/*": "@typhonjs-fvtt/standard/*"
   },
   "dependencies": {
-    "@typhonjs-fvtt/runtime": "^0.2.0-next.2",
-    "@typhonjs-fvtt/standard": "^0.2.0-next.2",
+    "@typhonjs-fvtt/runtime": "^0.2.0-next.4",
+    "@typhonjs-fvtt/standard": "^0.2.0-next.3",
     "svelte": "^4.2.19"
   },
   "devDependencies": {
     "@typhonjs-config/eslint-config": "^0.6.0",
     "@typhonjs-fvtt/eslint-config-foundry.js": "^0.8.0",
-    "eslint": "^8",
-    "vite": "^5.4.10"
+    "eslint": "^8"
   },
   "browserslist": [">5%", "not IE 11"],
   "scripts": {
