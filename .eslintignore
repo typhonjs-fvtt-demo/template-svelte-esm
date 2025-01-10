@@ -1,11 +1,10 @@
 .github/
 dist/
 docs/
-external/
 lang/
+packs/
 scripts/
 styles/
-templates/
 src/**/*.svelte
 
 # Temporary until ESLint v9 upgrade
