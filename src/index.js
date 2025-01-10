@@ -1,3 +1,3 @@
-import BasicApplication from './view/BasicApplication.js';
+import { BasicApp } from './view/BasicApp.js';
 
-Hooks.once('ready', () => new BasicApplication().render(true, { focus: true }));
+Hooks.once('ready', () => new BasicApp().render(true, { focus: true }));
