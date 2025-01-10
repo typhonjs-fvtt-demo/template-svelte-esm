@@ -7,12 +7,12 @@ import {
 
 import { sveltePreprocess }   from 'svelte-preprocess';
 
+import moduleJSON             from './module.json' with { type: 'json' };
+
 // ATTENTION!
 // Please modify the below variables: s_PACKAGE_ID and s_SVELTE_HASH_ID appropriately.
 
-// For convenience, you just need to modify the package ID below as it is used to fill in default proxy settings for
-// the dev server.
-const s_PACKAGE_ID = 'modules/template-svelte-esm';
+const s_PACKAGE_ID = `modules/${moduleJSON.id}`;
 
 // A short additional string to add to Svelte CSS hash values to make yours unique. This reduces the amount of
 // duplicated framework CSS overlap between many TRL packages enabled on Foundry VTT at the same time. 'tse' is chosen
@@ -34,10 +34,10 @@ export default ({ mode }) =>
 
    /** @type {import('vite').UserConfig} */
    return {
-      root: 'src/',                 // Source location / esbuild root.
-      base: `/${s_PACKAGE_ID}/`,    // Base module path that 30001 / served dev directory.
-      publicDir: false,             // No public resources to copy.
-      cacheDir: '../.vite-cache',   // Relative from root directory.
+      root: 'src/',                    // Source location / esbuild root.
+      base: `/${s_PACKAGE_ID}/dist`,   // Base module path that 30001 / served dev directory.
+      publicDir: false,                // No public resources to copy.
+      cacheDir: '../.vite-cache',      // Relative from root directory.
 
       resolve: {
          conditions: ['browser', 'import']
@@ -66,10 +66,16 @@ export default ({ mode }) =>
          open: '/game',
          proxy: {
             // Serves static files from main Foundry server.
-            [`^(/${s_PACKAGE_ID}/(assets|lang|packs|style.css))`]: 'http://localhost:30000',
+            [`^(/${s_PACKAGE_ID}/(assets|lang|packs|dist/${moduleJSON.id}.css))`]: 'http://localhost:30000',
 
             // All other paths besides package ID path are served from main Foundry server.
             [`^(?!/${s_PACKAGE_ID}/)`]: 'http://localhost:30000',
+
+            // Rewrite incoming `module-id.js` request from Foundry to the dev server `index.ts`.
+            [`/${s_PACKAGE_ID}/dist/${moduleJSON.id}.js`]: {
+               target: `http://localhost:30001/${s_PACKAGE_ID}/dist`,
+               rewrite: () => '/index.js',
+            },
 
             // Enable socket.io from main Foundry server.
             '/socket.io': { target: 'ws://localhost:30000', ws: true }
@@ -77,7 +83,7 @@ export default ({ mode }) =>
       },
 
       build: {
-         outDir: __dirname,
+         outDir: '../dist',
          emptyOutDir: false,
          sourcemap: s_SOURCEMAPS,
          brotliSize: true,
@@ -87,8 +93,15 @@ export default ({ mode }) =>
          lib: {
             entry: './index.js',
             formats: ['es'],
-            fileName: 'index'
-         }
+            fileName: moduleJSON.id
+         },
+         rollupOptions: {
+            output: {
+               // Rewrite the default style.css to a more recognizable file name.
+               assetFileNames: (assetInfo) =>
+                assetInfo.name === 'style.css' ? `${moduleJSON.id}.css` : assetInfo.name,
+            },
+         },
       },
 
       // Necessary when using the dev server for top-level await usage inside TRL.

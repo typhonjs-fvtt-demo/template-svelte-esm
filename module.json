@@ -5,20 +5,19 @@
   "version": "0.0.0",
   "authors": [
     {
-      "name": "Michael Leahy (TyphonJS) - MLeahy#4299",
-      "url": "https://www.typhonjs.io",
-      "discord": "MLeahy#4299"
+      "name": "YOUR NAME HERE",
+      "url": "YOUR URL HERE"
     }
   ],
   "compatibility": {
-    "minimum": "10",
+    "minimum": "12",
     "verified": "12"
   },
   "esmodules": [
-    "index.js"
+    "dist/template-svelte-esm.js"
   ],
   "styles": [
-    "style.css"
+    "dist/template-svelte-esm.css"
   ],
   "flags": {
     "hotReload": {
