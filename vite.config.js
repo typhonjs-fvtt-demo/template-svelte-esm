@@ -71,7 +71,7 @@ export default ({ mode }) =>
             // All other paths besides package ID path are served from main Foundry server.
             [`^(?!/${s_PACKAGE_ID}/)`]: 'http://localhost:30000',
 
-            // Rewrite incoming `module-id.js` request from Foundry to the dev server `index.ts`.
+            // Rewrite incoming `module-id.js` request from Foundry to the dev server `index.js`.
             [`/${s_PACKAGE_ID}/dist/${moduleJSON.id}.js`]: {
                target: `http://localhost:30001/${s_PACKAGE_ID}/dist`,
                rewrite: () => '/index.js',
@@ -101,7 +101,7 @@ export default ({ mode }) =>
                assetFileNames: (assetInfo) =>
                 assetInfo.name === 'style.css' ? `${moduleJSON.id}.css` : assetInfo.name,
             },
-         },
+         }
       },
 
       // Necessary when using the dev server for top-level await usage inside TRL.
