@@ -12,9 +12,9 @@
     "#standard/*": "@typhonjs-fvtt/standard/*"
   },
   "dependencies": {
-    "@typhonjs-fvtt/runtime": "^0.2.0",
-    "@typhonjs-fvtt/standard": "^0.2.0",
-    "svelte": "^4.2.19"
+    "@typhonjs-fvtt/runtime": "^0.3.0-next.3",
+    "@typhonjs-fvtt/standard": "^0.3.0-next.3",
+    "svelte": "^4.2.20"
   },
   "devDependencies": {
     "@typhonjs-config/eslint-config": "^0.6.0",
